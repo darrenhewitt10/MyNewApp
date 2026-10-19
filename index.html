@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spotlight — Get recommended by AI assistants</title>
+  <meta name="description" content="Spotlight shows local businesses whether ChatGPT, Claude, Gemini and Perplexity recommend them — and tells them exactly what to fix to get recommended." />
+  <meta property="og:title" content="Spotlight — Get recommended by AI assistants" />
+  <meta property="og:description" content="Find out if AI assistants recommend your business, see which competitors beat you, and get a weekly fix list." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0a14" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="beam" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="logo" aria-label="Spotlight home">
+        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#mark" /></svg>
+        <span>Spotlight</span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#report">Weekly report</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#check" class="btn btn-primary btn-sm nav-cta">Free AI check</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="check">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="dot"></span> Built for local businesses</p>
+          <h1>When customers ask AI, <span class="glow">do they hear your name?</span></h1>
+          <p class="lede">
+            People now ask ChatGPT, Claude and Gemini for “best tacos near me” or “a dentist that takes my insurance.”
+            Spotlight shows you whether you’re in those answers, who’s beating you, and exactly what to fix.
+          </p>
+
+          <form class="check-form" name="visibility-check" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="visibility-check" />
+            <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+            <div class="field">
+              <label for="business">Business name</label>
+              <input id="business" name="business" type="text" placeholder="e.g. Rosa’s Taqueria" required autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" placeholder="e.g. Austin, TX" required autocomplete="address-level2" />
+            </div>
+            <div class="field field-wide">
+              <label for="email">Email for your report</label>
+              <input id="email" name="email" type="email" placeholder="you@business.com" required autocomplete="email" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg field-wide">Check my AI visibility →</button>
+            <p class="form-note field-wide">Free first report. No credit card.</p>
+            <p class="form-success field-wide" role="status" hidden>
+              ✅ You’re on the list! We’ll email your first AI visibility report soon.
+            </p>
+          </form>
+
+          <ul class="assistants" aria-label="AI assistants we check">
+            <li>ChatGPT</li><li>Claude</li><li>Gemini</li><li>Perplexity</li>
+          </ul>
+        </div>
+
+        <!-- Mock AI chat -->
+        <div class="hero-visual" aria-label="Example of an AI assistant answer">
+          <div class="chat-card">
+            <div class="chat-top">
+              <span class="chip">AI assistant</span>
+              <span class="chat-dots"><i></i><i></i><i></i></span>
+            </div>
+            <div class="chat-q">What’s the best brunch spot in Austin?</div>
+            <div class="chat-a">
+              <p>Here are a few highly recommended brunch spots in Austin:</p>
+              <ol>
+                <li><strong>Sunny Side Kitchen</strong> — known for its migas and patio.</li>
+                <li><strong>The Daily Biscuit</strong> — great for groups, 4.8★ recent reviews.</li>
+                <li><strong>Juniper &amp; Rye</strong> — upscale, open early on weekends.</li>
+              </ol>
+            </div>
+            <div class="chat-alert">
+              <span class="alert-icon">!</span>
+              <div>
+                <strong>Your business wasn’t mentioned.</strong>
+                <span>3 competitors were recommended instead.</span>
+              </div>
+            </div>
+          </div>
+          <div class="float-card float-score">
+            <span class="float-label">AI visibility score</span>
+            <span class="float-value">23<small>/100</small></span>
+            <span class="meter"><span style="width:23%"></span></span>
+          </div>
+          <div class="float-card float-fix">
+            <span class="float-label">Top fix this week</span>
+            <span class="float-text">Add “brunch” &amp; weekend hours to your Google profile</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section problem">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The shift</p>
+          <h2>Search moved. Most local businesses haven’t noticed.</h2>
+          <p>A growing share of customers skip Google and ask an AI assistant instead. If you’re not in the answer, you’re invisible — and you’d never know.</p>
+        </div>
+        <div class="cards-3">
+          <article class="card">
+            <div class="card-icon">💬</div>
+            <h3>Customers ask, AI answers</h3>
+            <p>One question, two or three recommendations. There’s no page two to scroll to.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🙈</div>
+            <h3>Owners are flying blind</h3>
+            <p>Most owners have no idea whether ChatGPT or Gemini mentions them — or what it says.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🏢</div>
+            <h3>Existing tools are for big brands</h3>
+            <p>AI-search trackers are built for marketing teams. The pizza shop, salon and plumber have nothing. Until now.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>Three steps. Two minutes to start.</h2>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">1</span>
+            <h3>Tell us your business and city</h3>
+            <p>That’s it. We figure out the questions your customers actually ask — “emergency plumber near me,” “best nail salon in Tampa.”</p>
+          </li>
+          <li class="step">
+            <span class="step-num">2</span>
+            <h3>We ask the AIs every week</h3>
+            <p>Spotlight runs those questions through ChatGPT, Claude, Gemini and Perplexity and records who gets recommended, and in what order.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">3</span>
+            <h3>You get a plain-English fix list</h3>
+            <p>Missing Google profile info, too few recent reviews, a website that doesn’t say what you offer — prioritized by impact.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SAMPLE REPORT -->
+    <section class="section report" id="report">
+      <div class="container report-grid">
+        <div class="report-copy">
+          <p class="eyebrow">Your weekly report</p>
+          <h2>See exactly where you stand — and who’s ahead.</h2>
+          <ul class="checklist">
+            <li><strong>Were you mentioned?</strong> For every question, on every assistant.</li>
+            <li><strong>Where did you rank?</strong> First pick, an also-ran, or missing entirely.</li>
+            <li><strong>Who beat you?</strong> The competitors AI recommends instead of you.</li>
+            <li><strong>What changed?</strong> Answers shift week to week — so do your results.</li>
+          </ul>
+        </div>
+
+        <div class="report-card" aria-label="Sample weekly report">
+          <div class="report-head">
+            <div>
+              <span class="report-title">Rosa’s Taqueria · Austin, TX</span>
+              <span class="report-sub">Week of Oct 13</span>
+            </div>
+            <span class="trend up">▲ 12 pts</span>
+          </div>
+          <table class="report-table">
+            <thead>
+              <tr><th>Customer question</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>“best tacos in Austin”</td><td><span class="rank r1">#1</span></td><td><span class="rank r2">#3</span></td><td><span class="rank r0">—</span></td></tr>
+              <tr><td>“late night food near me”</td><td><span class="rank r2">#2</span></td><td><span class="rank r0">—</span></td><td><span class="rank r2">#4</span></td></tr>
+              <tr><td>“taqueria with vegan options”</td><td><span class="rank r0">—</span></td><td><span class="rank r0">—</span></td><td><span class="rank r0">—</span></td></tr>
+              <tr><td>“cheap lunch downtown Austin”</td><td><span class="rank r1">#1</span></td><td><span class="rank r1">#2</span></td><td><span class="rank r2">#3</span></td></tr>
+            </tbody>
+          </table>
+          <div class="report-foot">
+            <span class="float-label">Beat you most often</span>
+            <div class="competitors">
+              <span>El Fogón</span><span>Taco Libre</span><span>Verde Cantina</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIXES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">What to fix</p>
+          <h2>Not just a score. A to-do list that gets you recommended.</h2>
+          <p>AI assistants lean on the same public signals customers do. Spotlight tells you which ones are holding you back.</p>
+        </div>
+        <div class="cards-4">
+          <article class="card fix">
+            <span class="tag tag-high">High impact</span>
+            <h3>Google Business Profile</h3>
+            <p>Missing categories, hours, services or photos that AI uses to match you to questions.</p>
+          </article>
+          <article class="card fix">
+            <span class="tag tag-high">High impact</span>
+            <h3>Recent reviews</h3>
+            <p>Too few new reviews, or reviews that never mention what you’re great at.</p>
+          </article>
+          <article class="card fix">
+            <span class="tag tag-med">Medium impact</span>
+            <h3>Your website</h3>
+            <p>Pages that don’t clearly say what you offer, where you are, or who you serve.</p>
+          </article>
+          <article class="card fix">
+            <span class="tag tag-med">Medium impact</span>
+            <h3>Listings &amp; directories</h3>
+            <p>Inconsistent name, address or phone across Yelp, Apple Maps and industry sites.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section class="section who">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Who it’s for</p>
+          <h2>Made for Main Street, not the Fortune 500.</h2>
+        </div>
+        <ul class="industries">
+          <li>🍕 Restaurants</li><li>💅 Salons &amp; spas</li><li>🔧 Plumbers</li><li>🦷 Dentists</li>
+          <li>⚡ Electricians</li><li>🐾 Vets &amp; groomers</li><li>🏋️ Gyms &amp; studios</li><li>🚗 Auto repair</li>
+          <li>☕ Cafés</li><li>🏠 Home services</li><li>⚖️ Law offices</li><li>🛍️ Local shops</li>
+        </ul>
+        <blockquote class="pull">
+          “Your competitor shows up in ChatGPT and you don’t.”
+          <cite>— the sentence that gets every owner’s attention</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Pricing</p>
+          <h2>Simple monthly plans. Cancel anytime.</h2>
+          <p>AI answers change every week — Spotlight keeps watching so you don’t have to.</p>
+        </div>
+        <div class="pricing">
+          <article class="plan">
+            <h3>Starter</h3>
+            <p class="plan-desc">See where you stand.</p>
+            <p class="price">$49<span>/mo</span></p>
+            <ul>
+              <li>1 location</li>
+              <li>10 customer questions</li>
+              <li>ChatGPT, Claude &amp; Gemini</li>
+              <li>Weekly email report</li>
+              <li>Top 3 fixes each week</li>
+            </ul>
+            <a href="#check" class="btn btn-ghost">Start free check</a>
+          </article>
+          <article class="plan plan-featured">
+            <span class="plan-badge">Most popular</span>
+            <h3>Growth</h3>
+            <p class="plan-desc">Get recommended, and stay there.</p>
+            <p class="price">$99<span>/mo</span></p>
+            <ul>
+              <li>1 location</li>
+              <li>30 customer questions</li>
+              <li>All major AI assistants</li>
+              <li>Competitor tracking</li>
+              <li>Full prioritized fix list</li>
+              <li>Review &amp; profile alerts</li>
+            </ul>
+            <a href="#check" class="btn btn-primary">Start free check</a>
+          </article>
+          <article class="plan">
+            <h3>Multi-location</h3>
+            <p class="plan-desc">For franchises &amp; agencies.</p>
+            <p class="price">Custom</p>
+            <ul>
+              <li>Unlimited locations</li>
+              <li>Custom question sets</li>
+              <li>Location-by-location reports</li>
+              <li>White-label for agencies</li>
+              <li>Priority support</li>
+            </ul>
+            <a href="mailto:hello@spotlight.example" class="btn btn-ghost">Talk to us</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container narrow">
+        <div class="section-head">
+          <p class="eyebrow">FAQ</p>
+          <h2>Questions owners ask us</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Do people really use AI to find local businesses?</summary>
+            <p>Yes, and more every month. Instead of scrolling search results, people ask an assistant a plain question and get two or three names back. Those names get the call.</p>
+          </details>
+          <details>
+            <summary>Which AI assistants do you check?</summary>
+            <p>ChatGPT, Claude, Gemini and Perplexity. We add assistants as they become popular with consumers.</p>
+          </details>
+          <details>
+            <summary>Can you guarantee I’ll be recommended?</summary>
+            <p>Nobody can honestly guarantee that — the AI companies decide what their assistants say. What we can do is show you exactly where you stand and fix the signals those assistants rely on, so your odds go up week over week.</p>
+          </details>
+          <details>
+            <summary>Do I need to be technical?</summary>
+            <p>Not at all. Every fix is written in plain English, like “add your Saturday hours to Google” or “ask five recent customers for a review.”</p>
+          </details>
+          <details>
+            <summary>Why is it a monthly subscription?</summary>
+            <p>AI answers change constantly as models update and competitors improve. A one-time check goes stale fast; weekly tracking shows what’s working.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section final-cta">
+      <div class="container narrow center">
+        <h2>Step into the spotlight.</h2>
+        <p>Find out in minutes whether AI assistants are sending customers to you — or to the shop down the street.</p>
+        <a href="#check" class="btn btn-primary btn-lg">Get my free AI check →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="logo" aria-label="Spotlight home">
+        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#mark" /></svg>
+        <span>Spotlight</span>
+      </a>
+      <p>Helping local businesses get recommended by AI.</p>
+      <p class="copy">© <span id="year">2026</span> Spotlight. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Logo symbol -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="mark-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffd166" />
+        <stop offset="1" stop-color="#ff8a3d" />
+      </linearGradient>
+    </defs>
+    <symbol id="mark" viewBox="0 0 32 32">
+      <path d="M11 3h10l7 24H4z" fill="url(#mark-grad)" opacity=".35" />
+      <path d="M12 3h8v4h-8z" fill="url(#mark-grad)" />
+      <ellipse cx="16" cy="27" rx="12" ry="3" fill="url(#mark-grad)" />
+    </symbol>
+  </svg>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>

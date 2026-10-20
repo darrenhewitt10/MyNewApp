@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard — Spotlight</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0b0a14" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="beam" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="logo" aria-label="Spotlight home">
+        <img class="logo-mark" src="/favicon.svg" alt="" />
+        <span>Spotlight</span>
+      </a>
+      <div class="user-menu">
+        <img class="avatar" alt="" hidden />
+        <span class="user-name"></span>
+        <button class="btn btn-ghost btn-sm" id="sign-out" type="button">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dash" hidden>
+    <div class="container">
+      <p class="eyebrow"><span class="dot"></span> Dashboard</p>
+      <h1 class="dash-title">Hi <span class="first-name glow"></span> 👋</h1>
+      <p class="lede">Add the business you want Spotlight to track. We’ll start asking AI assistants about it every week.</p>
+
+      <div class="dash-grid">
+        <section class="dash-card">
+          <h2>Add a business</h2>
+          <form id="business-form" class="dash-form">
+            <div class="field">
+              <label for="b-name">Business name</label>
+              <input id="b-name" name="name" type="text" placeholder="e.g. Rosa’s Taqueria" required maxlength="200" />
+            </div>
+            <div class="field">
+              <label for="b-city">City</label>
+              <input id="b-city" name="city" type="text" placeholder="e.g. Austin, TX" required maxlength="200" />
+            </div>
+            <button class="btn btn-primary" type="submit">Start tracking</button>
+            <p class="form-msg" role="status" hidden></p>
+          </form>
+        </section>
+
+        <section class="dash-card">
+          <h2>Your businesses</h2>
+          <ul class="biz-list"></ul>
+          <p class="biz-empty">No businesses yet — add your first one.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/dashboard.js"></script>
+</body>
+</html>

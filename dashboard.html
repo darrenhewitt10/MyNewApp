@@ -5,22 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard — Spotlight</title>
   <meta name="robots" content="noindex" />
-  <meta name="theme-color" content="#0b0a14" />
+  <meta name="theme-color" content="#07070d" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <div class="beam" aria-hidden="true"></div>
+  <div class="orbs" aria-hidden="true"><span></span><span></span><span></span></div>
 
   <header class="nav">
-    <div class="container nav-inner">
-      <a href="/" class="logo" aria-label="Spotlight home">
-        <img class="logo-mark" src="/favicon.svg" alt="" />
-        <span>Spotlight</span>
-      </a>
+    <div class="nav-inner glass-strong">
+      <a href="/" class="logo" aria-label="Spotlight home"><span class="logo-orb"></span>Spotlight</a>
       <div class="user-menu">
         <img class="avatar" alt="" hidden />
         <span class="user-name"></span>
@@ -31,12 +25,14 @@
 
   <main class="dash" hidden>
     <div class="container">
-      <p class="eyebrow"><span class="dot"></span> Dashboard</p>
-      <h1 class="dash-title">Hi <span class="first-name glow"></span> 👋</h1>
-      <p class="lede">Add the business you want Spotlight to track. We’ll start asking AI assistants about it every week.</p>
+      <div class="dash-head">
+        <span class="eyebrow">Dashboard</span>
+        <h1 class="dash-title">Hi <span class="first-name"></span> 👋</h1>
+        <p class="lede">Add the business you want Spotlight to track. We’ll start asking AI assistants about it every week.</p>
+      </div>
 
       <div class="dash-grid">
-        <section class="dash-card">
+        <section class="dash-card glass">
           <h2>Add a business</h2>
           <form id="business-form" class="dash-form">
             <div class="field">
@@ -52,7 +48,7 @@
           </form>
         </section>
 
-        <section class="dash-card">
+        <section class="dash-card glass">
           <h2>Your businesses</h2>
           <ul class="biz-list"></ul>
           <p class="biz-empty">No businesses yet — add your first one.</p>

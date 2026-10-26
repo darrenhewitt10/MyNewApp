@@ -7,7 +7,7 @@ Landing page for **Spotlight** — shows local businesses whether AI assistants 
 | File | Purpose |
 | --- | --- |
 | `index.html` | The landing page |
-| `styles.css` | All styles (dark "stage" theme, amber spotlight accent) |
+| `styles.css` | All styles — the "Spotlight Glass" design (frosted glass over soft light orbs) |
 | `script.js` | Mobile menu, form submission, scroll animations |
 | `thanks.html` | Fallback page after the sign-up form is submitted |
 | `login.html` / `login.js` | Log in with Google, Apple (iCloud) or Yahoo |

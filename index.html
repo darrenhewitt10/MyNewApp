@@ -8,22 +8,16 @@
   <meta property="og:title" content="Spotlight — Get recommended by AI assistants" />
   <meta property="og:description" content="Find out if AI assistants recommend your business, see which competitors beat you, and get a weekly fix list." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0b0a14" />
+  <meta name="theme-color" content="#07070d" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <div class="beam" aria-hidden="true"></div>
+  <div class="orbs" aria-hidden="true"><span></span><span></span><span></span></div>
 
   <header class="nav">
-    <div class="container nav-inner">
-      <a href="/" class="logo" aria-label="Spotlight home">
-        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#mark" /></svg>
-        <span>Spotlight</span>
-      </a>
+    <div class="nav-inner glass-strong">
+      <a href="/" class="logo" aria-label="Spotlight home"><span class="logo-orb"></span>Spotlight</a>
       <nav class="nav-links" id="nav-links" aria-label="Main">
         <a href="#how">How it works</a>
         <a href="#report">Weekly report</a>
@@ -38,55 +32,55 @@
     </div>
   </header>
 
-  <main>
+  <main class="container">
     <!-- HERO -->
     <section class="hero" id="check">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="dot"></span> Built for local businesses</p>
-          <h1>When customers ask AI, <span class="glow">do they hear your name?</span></h1>
-          <p class="lede">
-            People now ask ChatGPT, Claude and Gemini for “best tacos near me” or “a dentist that takes my insurance.”
-            Spotlight shows you whether you’re in those answers, who’s beating you, and exactly what to fix.
+      <div class="hero-copy">
+        <span class="badge glass">Built for local businesses</span>
+        <h1>When customers ask AI, do they hear your name?</h1>
+        <p class="lede">
+          People now ask ChatGPT, Claude and Gemini for “best tacos near me” or “a dentist that takes my insurance.”
+          Spotlight shows you whether you’re in those answers, who’s beating you, and exactly what to fix.
+        </p>
+
+        <form class="check-form glass" name="visibility-check" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="visibility-check" />
+          <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <div class="field">
+            <label for="business" class="sr-only">Business name</label>
+            <input id="business" name="business" type="text" placeholder="Business name" required autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="city" class="sr-only">City</label>
+            <input id="city" name="city" type="text" placeholder="City" required autocomplete="address-level2" />
+          </div>
+          <div class="field field-wide">
+            <label for="email" class="sr-only">Email for your report</label>
+            <input id="email" name="email" type="email" placeholder="Email for your report" required autocomplete="email" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block field-wide">Check my AI visibility →</button>
+          <p class="form-note field-wide">Free first report. No credit card.</p>
+          <p class="form-success field-wide" role="status" hidden>
+            ✅ You’re on the list! We’ll email your first AI visibility report soon.
           </p>
+        </form>
 
-          <form class="check-form" name="visibility-check" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="visibility-check" />
-            <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
-            <div class="field">
-              <label for="business">Business name</label>
-              <input id="business" name="business" type="text" placeholder="e.g. Rosa’s Taqueria" required autocomplete="organization" />
-            </div>
-            <div class="field">
-              <label for="city">City</label>
-              <input id="city" name="city" type="text" placeholder="e.g. Austin, TX" required autocomplete="address-level2" />
-            </div>
-            <div class="field field-wide">
-              <label for="email">Email for your report</label>
-              <input id="email" name="email" type="email" placeholder="you@business.com" required autocomplete="email" />
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg field-wide">Check my AI visibility →</button>
-            <p class="form-note field-wide">Free first report. No credit card.</p>
-            <p class="form-success field-wide" role="status" hidden>
-              ✅ You’re on the list! We’ll email your first AI visibility report soon.
-            </p>
-          </form>
+        <ul class="assistants" aria-label="AI assistants we check">
+          <li>ChatGPT</li><li>Claude</li><li>Gemini</li><li>Perplexity</li>
+        </ul>
+      </div>
 
-          <ul class="assistants" aria-label="AI assistants we check">
-            <li>ChatGPT</li><li>Claude</li><li>Gemini</li><li>Perplexity</li>
-          </ul>
-        </div>
-
-        <!-- Mock AI chat -->
-        <div class="hero-visual" aria-label="Example of an AI assistant answer">
-          <div class="chat-card">
-            <div class="chat-top">
-              <span class="chip">AI assistant</span>
-              <span class="chat-dots"><i></i><i></i><i></i></span>
-            </div>
+      <!-- Mock AI chat -->
+      <div class="hero-visual" aria-label="Example of an AI assistant answer">
+        <div class="chat-card glass">
+          <div class="chat-top">
+            <span class="traffic"><i></i><i></i><i></i></span>
+            <span class="chat-title">AI assistant</span>
+          </div>
+          <div class="chat-body">
             <div class="chat-q">What’s the best brunch spot in Austin?</div>
             <div class="chat-a">
-              <p>Here are a few highly recommended brunch spots in Austin:</p>
+              <div>Here are a few highly recommended brunch spots in Austin:</div>
               <ol>
                 <li><strong>Sunny Side Kitchen</strong> — known for its migas and patio.</li>
                 <li><strong>The Daily Biscuit</strong> — great for groups, 4.8★ recent reviews.</li>
@@ -95,295 +89,278 @@
             </div>
             <div class="chat-alert">
               <span class="alert-icon">!</span>
-              <div>
-                <strong>Your business wasn’t mentioned.</strong>
-                <span>3 competitors were recommended instead.</span>
-              </div>
+              <span><strong>Your business wasn’t mentioned.</strong> <span class="muted">3 competitors were recommended instead.</span></span>
             </div>
           </div>
-          <div class="float-card float-score">
-            <span class="float-label">AI visibility score</span>
-            <span class="float-value">23<small>/100</small></span>
-            <span class="meter"><span style="width:23%"></span></span>
-          </div>
-          <div class="float-card float-fix">
-            <span class="float-label">Top fix this week</span>
-            <span class="float-text">Add “brunch” &amp; weekend hours to your Google profile</span>
+        </div>
+        <div class="score-card glass-strong">
+          <div class="score-ring" style="--pct: 23%"><span>23</span></div>
+          <div class="score-text">
+            <span class="kicker">AI visibility score 23/100</span>
+            <span class="kicker">Top fix this week</span>
+            <span class="score-fix">Add “brunch” &amp; weekend hours to your Google profile</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROBLEM -->
-    <section class="section problem">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">The shift</p>
-          <h2>Search moved. Most local businesses haven’t noticed.</h2>
-          <p>A growing share of customers skip Google and ask an AI assistant instead. If you’re not in the answer, you’re invisible — and you’d never know.</p>
-        </div>
-        <div class="cards-3">
-          <article class="card">
-            <div class="card-icon">💬</div>
-            <h3>Customers ask, AI answers</h3>
-            <p>One question, two or three recommendations. There’s no page two to scroll to.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">🙈</div>
-            <h3>Owners are flying blind</h3>
-            <p>Most owners have no idea whether ChatGPT or Gemini mentions them — or what it says.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">🏢</div>
-            <h3>Existing tools are for big brands</h3>
-            <p>AI-search trackers are built for marketing teams. The pizza shop, salon and plumber have nothing. Until now.</p>
-          </article>
-        </div>
+    <!-- THE SHIFT -->
+    <section class="section">
+      <div class="section-head">
+        <span class="eyebrow">The shift</span>
+        <h2>Search moved. Most local businesses haven’t noticed.</h2>
+        <p>A growing share of customers skip Google and ask an AI assistant instead. If you’re not in the answer, you’re invisible — and you’d never know.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card glass">
+          <span class="card-num">01</span>
+          <h3>Customers ask, AI answers</h3>
+          <p>One question, two or three recommendations. There’s no page two to scroll to.</p>
+        </article>
+        <article class="card glass">
+          <span class="card-num">02</span>
+          <h3>Owners are flying blind</h3>
+          <p>Most owners have no idea whether ChatGPT or Gemini mentions them — or what it says.</p>
+        </article>
+        <article class="card glass">
+          <span class="card-num">03</span>
+          <h3>Existing tools are for big brands</h3>
+          <p>AI-search trackers are built for marketing teams. The pizza shop, salon and plumber have nothing. Until now.</p>
+        </article>
       </div>
     </section>
 
     <!-- HOW IT WORKS -->
     <section class="section" id="how">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">How it works</p>
-          <h2>Three steps. Two minutes to start.</h2>
-        </div>
-        <ol class="steps">
-          <li class="step">
-            <span class="step-num">1</span>
-            <h3>Tell us your business and city</h3>
-            <p>That’s it. We figure out the questions your customers actually ask — “emergency plumber near me,” “best nail salon in Tampa.”</p>
-          </li>
-          <li class="step">
-            <span class="step-num">2</span>
-            <h3>We ask the AIs every week</h3>
-            <p>Spotlight runs those questions through ChatGPT, Claude, Gemini and Perplexity and records who gets recommended, and in what order.</p>
-          </li>
-          <li class="step">
-            <span class="step-num">3</span>
-            <h3>You get a plain-English fix list</h3>
-            <p>Missing Google profile info, too few recent reviews, a website that doesn’t say what you offer — prioritized by impact.</p>
-          </li>
-        </ol>
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2 class="wrap-natural">Three steps. Two minutes to start.</h2>
       </div>
+      <ol class="steps glass">
+        <li class="step">
+          <span class="step-num">1</span>
+          <h3>Tell us your business and city</h3>
+          <p>That’s it. We figure out the questions your customers actually ask — “emergency plumber near me,” “best nail salon in Tampa.”</p>
+        </li>
+        <li class="step">
+          <span class="step-num">2</span>
+          <h3>We ask the AIs every week</h3>
+          <p>Spotlight runs those questions through ChatGPT, Claude, Gemini and Perplexity and records who gets recommended, and in what order.</p>
+        </li>
+        <li class="step">
+          <span class="step-num step-num-accent">3</span>
+          <h3>You get a plain-English fix list</h3>
+          <p>Missing Google profile info, too few recent reviews, a website that doesn’t say what you offer — prioritized by impact.</p>
+        </li>
+      </ol>
     </section>
 
-    <!-- SAMPLE REPORT -->
+    <!-- WEEKLY REPORT -->
     <section class="section report" id="report">
-      <div class="container report-grid">
-        <div class="report-copy">
-          <p class="eyebrow">Your weekly report</p>
-          <h2>See exactly where you stand — and who’s ahead.</h2>
-          <ul class="checklist">
-            <li><strong>Were you mentioned?</strong> For every question, on every assistant.</li>
-            <li><strong>Where did you rank?</strong> First pick, an also-ran, or missing entirely.</li>
-            <li><strong>Who beat you?</strong> The competitors AI recommends instead of you.</li>
-            <li><strong>What changed?</strong> Answers shift week to week — so do your results.</li>
-          </ul>
-        </div>
+      <div class="report-copy">
+        <span class="eyebrow">Your weekly report</span>
+        <h2>See exactly where you stand — and who’s ahead.</h2>
+        <ul class="report-points">
+          <li><strong>Were you mentioned?</strong> <span class="muted">For every question, on every assistant.</span></li>
+          <li><strong>Where did you rank?</strong> <span class="muted">First pick, an also-ran, or missing entirely.</span></li>
+          <li><strong>Who beat you?</strong> <span class="muted">The competitors AI recommends instead of you.</span></li>
+          <li><strong>What changed?</strong> <span class="muted">Answers shift week to week — so do your results.</span></li>
+        </ul>
+      </div>
 
-        <div class="report-card" aria-label="Sample weekly report">
-          <div class="report-head">
-            <div>
-              <span class="report-title">Rosa’s Taqueria · Austin, TX</span>
-              <span class="report-sub">Week of Oct 13</span>
-            </div>
-            <span class="trend up">▲ 12 pts</span>
+      <div class="report-card glass" aria-label="Sample weekly report">
+        <div class="report-head">
+          <div>
+            <span class="report-title">Rosa’s Taqueria · Austin, TX</span>
+            <span class="report-sub">Week of Oct 13</span>
           </div>
+          <span class="trend">▲ 12 pts</span>
+        </div>
+        <div class="table-wrap">
           <table class="report-table">
             <thead>
               <tr><th>Customer question</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th></tr>
             </thead>
             <tbody>
-              <tr><td>“best tacos in Austin”</td><td><span class="rank r1">#1</span></td><td><span class="rank r2">#3</span></td><td><span class="rank r0">—</span></td></tr>
-              <tr><td>“late night food near me”</td><td><span class="rank r2">#2</span></td><td><span class="rank r0">—</span></td><td><span class="rank r2">#4</span></td></tr>
-              <tr><td>“taqueria with vegan options”</td><td><span class="rank r0">—</span></td><td><span class="rank r0">—</span></td><td><span class="rank r0">—</span></td></tr>
-              <tr><td>“cheap lunch downtown Austin”</td><td><span class="rank r1">#1</span></td><td><span class="rank r1">#2</span></td><td><span class="rank r2">#3</span></td></tr>
+              <tr><td>“best tacos in Austin”</td><td><span class="rank-top">#1</span></td><td class="muted">#3</td><td class="faint">—</td></tr>
+              <tr><td>“late night food near me”</td><td class="muted">#2</td><td class="faint">—</td><td class="muted">#4</td></tr>
+              <tr class="row-miss"><td>“taqueria with vegan options”</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>“cheap lunch downtown Austin”</td><td><span class="rank-top">#1</span></td><td class="muted">#2</td><td class="muted">#3</td></tr>
             </tbody>
           </table>
-          <div class="report-foot">
-            <span class="float-label">Beat you most often</span>
-            <div class="competitors">
-              <span>El Fogón</span><span>Taco Libre</span><span>Verde Cantina</span>
-            </div>
+        </div>
+        <div class="report-foot">
+          <span class="kicker">Beat you most often</span>
+          <div class="chips">
+            <span>El Fogón</span><span>Taco Libre</span><span>Verde Cantina</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FIXES -->
+    <!-- WHAT TO FIX -->
     <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">What to fix</p>
-          <h2>Not just a score. A to-do list that gets you recommended.</h2>
-          <p>AI assistants lean on the same public signals customers do. Spotlight tells you which ones are holding you back.</p>
-        </div>
-        <div class="cards-4">
-          <article class="card fix">
-            <span class="tag tag-high">High impact</span>
-            <h3>Google Business Profile</h3>
-            <p>Missing categories, hours, services or photos that AI uses to match you to questions.</p>
-          </article>
-          <article class="card fix">
-            <span class="tag tag-high">High impact</span>
-            <h3>Recent reviews</h3>
-            <p>Too few new reviews, or reviews that never mention what you’re great at.</p>
-          </article>
-          <article class="card fix">
-            <span class="tag tag-med">Medium impact</span>
-            <h3>Your website</h3>
-            <p>Pages that don’t clearly say what you offer, where you are, or who you serve.</p>
-          </article>
-          <article class="card fix">
-            <span class="tag tag-med">Medium impact</span>
-            <h3>Listings &amp; directories</h3>
-            <p>Inconsistent name, address or phone across Yelp, Apple Maps and industry sites.</p>
-          </article>
-        </div>
+      <div class="section-head">
+        <span class="eyebrow">What to fix</span>
+        <h2>Not just a score. A to-do list that gets you recommended.</h2>
+        <p>AI assistants lean on the same public signals customers do. Spotlight tells you which ones are holding you back.</p>
+      </div>
+      <div class="grid-4">
+        <article class="card glass fix">
+          <span class="tag tag-high">High impact</span>
+          <h3>Google Business Profile</h3>
+          <p>Missing categories, hours, services or photos that AI uses to match you to questions.</p>
+        </article>
+        <article class="card glass fix">
+          <span class="tag tag-high">High impact</span>
+          <h3>Recent reviews</h3>
+          <p>Too few new reviews, or reviews that never mention what you’re great at.</p>
+        </article>
+        <article class="card glass fix">
+          <span class="tag tag-med">Medium impact</span>
+          <h3>Your website</h3>
+          <p>Pages that don’t clearly say what you offer, where you are, or who you serve.</p>
+        </article>
+        <article class="card glass fix">
+          <span class="tag tag-med">Medium impact</span>
+          <h3>Listings &amp; directories</h3>
+          <p>Inconsistent name, address or phone across Yelp, Apple Maps and industry sites.</p>
+        </article>
       </div>
     </section>
 
     <!-- WHO IT'S FOR -->
-    <section class="section who">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Who it’s for</p>
-          <h2>Made for Main Street, not the Fortune 500.</h2>
-        </div>
-        <ul class="industries">
-          <li>🍕 Restaurants</li><li>💅 Salons &amp; spas</li><li>🔧 Plumbers</li><li>🦷 Dentists</li>
-          <li>⚡ Electricians</li><li>🐾 Vets &amp; groomers</li><li>🏋️ Gyms &amp; studios</li><li>🚗 Auto repair</li>
-          <li>☕ Cafés</li><li>🏠 Home services</li><li>⚖️ Law offices</li><li>🛍️ Local shops</li>
-        </ul>
-        <blockquote class="pull">
-          “Your competitor shows up in ChatGPT and you don’t.”
-          <cite>— the sentence that gets every owner’s attention</cite>
-        </blockquote>
+    <section class="section">
+      <div class="section-head section-head-wide">
+        <span class="eyebrow">Who it’s for</span>
+        <h2 class="wrap-natural">Made for Main Street, not the Fortune 500.</h2>
       </div>
+      <ul class="trades">
+        <li class="glass"><svg class="trade-icon"><use href="#i-pizza" /></svg>Restaurants</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-scissors" /></svg>Salons &amp; spas</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-wrench" /></svg>Plumbers</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-tooth" /></svg>Dentists</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-lightning" /></svg>Electricians</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-paw-print" /></svg>Vets &amp; groomers</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-barbell" /></svg>Gyms &amp; studios</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-car" /></svg>Auto repair</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-coffee" /></svg>Cafés</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-house" /></svg>Home services</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-scales" /></svg>Law offices</li>
+        <li class="glass"><svg class="trade-icon"><use href="#i-storefront" /></svg>Local shops</li>
+      </ul>
+      <blockquote class="pull glass">
+        <p>“Your competitor shows up in ChatGPT and you don’t.”</p>
+        <cite>— the sentence that gets every owner’s attention</cite>
+      </blockquote>
     </section>
 
     <!-- PRICING -->
     <section class="section" id="pricing">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Pricing</p>
-          <h2>Simple monthly plans. Cancel anytime.</h2>
-          <p>AI answers change every week — Spotlight keeps watching so you don’t have to.</p>
-        </div>
-        <div class="pricing">
-          <article class="plan">
-            <h3>Starter</h3>
-            <p class="plan-desc">See where you stand.</p>
-            <p class="price">$49<span>/mo</span></p>
-            <ul>
-              <li>1 location</li>
-              <li>10 customer questions</li>
-              <li>ChatGPT, Claude &amp; Gemini</li>
-              <li>Weekly email report</li>
-              <li>Top 3 fixes each week</li>
-            </ul>
-            <a href="#check" class="btn btn-ghost">Start free check</a>
-          </article>
-          <article class="plan plan-featured">
-            <span class="plan-badge">Most popular</span>
-            <h3>Growth</h3>
-            <p class="plan-desc">Get recommended, and stay there.</p>
-            <p class="price">$99<span>/mo</span></p>
-            <ul>
-              <li>1 location</li>
-              <li>30 customer questions</li>
-              <li>All major AI assistants</li>
-              <li>Competitor tracking</li>
-              <li>Full prioritized fix list</li>
-              <li>Review &amp; profile alerts</li>
-            </ul>
-            <a href="#check" class="btn btn-primary">Start free check</a>
-          </article>
-          <article class="plan">
-            <h3>Multi-location</h3>
-            <p class="plan-desc">For franchises &amp; agencies.</p>
-            <p class="price">Custom</p>
-            <ul>
-              <li>Unlimited locations</li>
-              <li>Custom question sets</li>
-              <li>Location-by-location reports</li>
-              <li>White-label for agencies</li>
-              <li>Priority support</li>
-            </ul>
-            <a href="mailto:hello@spotlight.example" class="btn btn-ghost">Talk to us</a>
-          </article>
-        </div>
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="wrap-natural">Simple monthly plans. Cancel anytime.</h2>
+        <p>AI answers change every week — Spotlight keeps watching so you don’t have to.</p>
+      </div>
+      <div class="pricing">
+        <article class="plan glass">
+          <div><h3>Starter</h3><span class="plan-desc">See where you stand.</span></div>
+          <p class="price">$49<span>/mo</span></p>
+          <ul>
+            <li>1 location</li>
+            <li>10 customer questions</li>
+            <li>ChatGPT, Claude &amp; Gemini</li>
+            <li>Weekly email report</li>
+            <li>Top 3 fixes each week</li>
+          </ul>
+          <a href="#check" class="btn btn-ghost btn-block">Start free check</a>
+        </article>
+        <article class="plan plan-featured">
+          <span class="plan-badge">Most popular</span>
+          <div><h3>Growth</h3><span class="plan-desc">Get recommended, and stay there.</span></div>
+          <p class="price">$99<span>/mo</span></p>
+          <ul>
+            <li>1 location</li>
+            <li>30 customer questions</li>
+            <li>All major AI assistants</li>
+            <li>Competitor tracking</li>
+            <li>Full prioritized fix list</li>
+            <li>Review &amp; profile alerts</li>
+          </ul>
+          <a href="#check" class="btn btn-primary btn-block">Start free check</a>
+        </article>
+        <article class="plan glass">
+          <div><h3>Multi-location</h3><span class="plan-desc">For franchises &amp; agencies.</span></div>
+          <p class="price">Custom</p>
+          <ul>
+            <li>Unlimited locations</li>
+            <li>Custom question sets</li>
+            <li>Location-by-location reports</li>
+            <li>White-label for agencies</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="mailto:hello@spotlight.example" class="btn btn-ghost btn-block">Talk to us</a>
+        </article>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="container narrow">
-        <div class="section-head">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions owners ask us</h2>
-        </div>
-        <div class="faq">
-          <details>
-            <summary>Do people really use AI to find local businesses?</summary>
-            <p>Yes, and more every month. Instead of scrolling search results, people ask an assistant a plain question and get two or three names back. Those names get the call.</p>
-          </details>
-          <details>
-            <summary>Which AI assistants do you check?</summary>
-            <p>ChatGPT, Claude, Gemini and Perplexity. We add assistants as they become popular with consumers.</p>
-          </details>
-          <details>
-            <summary>Can you guarantee I’ll be recommended?</summary>
-            <p>Nobody can honestly guarantee that — the AI companies decide what their assistants say. What we can do is show you exactly where you stand and fix the signals those assistants rely on, so your odds go up week over week.</p>
-          </details>
-          <details>
-            <summary>Do I need to be technical?</summary>
-            <p>Not at all. Every fix is written in plain English, like “add your Saturday hours to Google” or “ask five recent customers for a review.”</p>
-          </details>
-          <details>
-            <summary>Why is it a monthly subscription?</summary>
-            <p>AI answers change constantly as models update and competitors improve. A one-time check goes stale fast; weekly tracking shows what’s working.</p>
-          </details>
-        </div>
+    <section class="section faq-section" id="faq">
+      <div class="section-head faq-head">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="wrap-natural">Questions owners ask us</h2>
+      </div>
+      <div class="faq glass">
+        <details open>
+          <summary>Do people really use AI to find local businesses?<span class="chev">+</span></summary>
+          <p>Yes, and more every month. Instead of scrolling search results, people ask an assistant a plain question and get two or three names back. Those names get the call.</p>
+        </details>
+        <details>
+          <summary>Which AI assistants do you check?<span class="chev">+</span></summary>
+          <p>ChatGPT, Claude, Gemini and Perplexity. We add assistants as they become popular with consumers.</p>
+        </details>
+        <details>
+          <summary>Can you guarantee I’ll be recommended?<span class="chev">+</span></summary>
+          <p>Nobody can honestly guarantee that — the AI companies decide what their assistants say. What we can do is show you exactly where you stand and fix the signals those assistants rely on, so your odds go up week over week.</p>
+        </details>
+        <details>
+          <summary>Do I need to be technical?<span class="chev">+</span></summary>
+          <p>Not at all. Every fix is written in plain English, like “add your Saturday hours to Google” or “ask five recent customers for a review.”</p>
+        </details>
+        <details>
+          <summary>Why is it a monthly subscription?<span class="chev">+</span></summary>
+          <p>AI answers change constantly as models update and competitors improve. A one-time check goes stale fast; weekly tracking shows what’s working.</p>
+        </details>
       </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="section final-cta">
-      <div class="container narrow center">
-        <h2>Step into the spotlight.</h2>
-        <p>Find out in minutes whether AI assistants are sending customers to you — or to the shop down the street.</p>
-        <a href="#check" class="btn btn-primary btn-lg">Get my free AI check →</a>
-      </div>
+    <section class="final-cta">
+      <h2>Step into the spotlight.</h2>
+      <p>Find out in minutes whether AI assistants are sending customers to you — or to the shop down the street.</p>
+      <a href="#check" class="btn btn-primary btn-lg">Get my free AI check →</a>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="/" class="logo" aria-label="Spotlight home">
-        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#mark" /></svg>
-        <span>Spotlight</span>
-      </a>
-      <p>Helping local businesses get recommended by AI.</p>
-      <p class="copy">© <span id="year">2026</span> Spotlight. All rights reserved.</p>
-    </div>
+  <footer class="footer container">
+    <span><strong>Spotlight</strong> · Helping local businesses get recommended by AI.</span>
+    <span>© <span id="year">2026</span> Spotlight. All rights reserved.</span>
   </footer>
 
-  <!-- Logo symbol -->
+  <!-- Duotone icons (Phosphor Icons, MIT) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <linearGradient id="mark-grad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#ffd166" />
-        <stop offset="1" stop-color="#ff8a3d" />
-      </linearGradient>
-    </defs>
-    <symbol id="mark" viewBox="0 0 32 32">
-      <path d="M11 3h10l7 24H4z" fill="url(#mark-grad)" opacity=".35" />
-      <path d="M12 3h8v4h-8z" fill="url(#mark-grad)" />
-      <ellipse cx="16" cy="27" rx="12" ry="3" fill="url(#mark-grad)" />
-    </symbol>
+    <symbol id="i-pizza" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M872 592.96l-123.48-202.56c-21.206 16.178-48.078 25.921-77.226 25.921-70.692 0-128-57.308-128-128 0-50.589 29.348-94.324 71.948-115.107l0.758-0.334-76.52-125.52c-5.702-9.334-15.834-15.47-27.4-15.47s-21.698 6.136-27.32 15.33l-0.080 0.14-147.48 241.8c63.068 8.617 111.143 62.137 111.143 126.885 0 70.692-57.308 128-128 128-43.331 0-81.633-21.531-104.791-54.478l-0.272-0.408-63.28 103.8c100.786 69.521 225.544 111.043 360 111.043s259.214-41.522 362.15-112.443l-2.15 1.401z"/><path d="M958.16 708c-4.162 16.896-14.637 30.83-28.721 39.441l-0.279 0.159c-118.94 73.075-262.995 116.359-417.16 116.359s-298.22-43.284-420.675-118.363l3.515 2.004c-18.596-11.418-30.812-31.644-30.812-54.722 0-12.304 3.472-23.798 9.49-33.554l-0.158 0.276 384-629.080c11.419-18.594 31.643-30.808 54.72-30.808s43.301 12.214 54.561 30.53l0.159 0.278 209.2 343.36 174.44 285.8c5.97 9.48 9.512 21.010 9.512 33.367 0 5.308-0.653 10.462-1.884 15.389l0.092-0.436zM254.36 486c17.146 16.186 40.331 26.136 65.841 26.136 53.019 0 96-42.981 96-96 0-41.534-26.376-76.908-63.292-90.284l-0.668-0.212zM606.040 218.2c-18.576 17.545-30.14 42.345-30.14 69.846 0 53.019 42.981 96 96 96 11.508 0 22.543-2.025 32.768-5.738l-0.668 0.212zM737.76 433.92c-19.421 9.035-42.16 14.305-66.129 14.305-88.366 0-160-71.634-160-160 0-50.66 23.544-95.821 60.287-125.137l0.322-0.248-60.24-98.84-126 206.28c56.043 25.704 94.266 81.325 94.266 145.873 0 88.366-71.634 160-160 160-37.829 0-72.592-13.128-99.982-35.078l0.316 0.244-25.4 41.64c90.208 55.909 199.624 89.045 316.78 89.045s226.572-33.136 319.388-90.547l-2.608 1.502zM862.16 637.64c-99.725 61.757-220.668 98.357-350.16 98.357s-250.435-36.6-353.049-100.019l2.889 1.662-33.84 55.28c109.5 67.214 242.101 107.025 384 107.025s274.5-39.811 387.243-108.872l-3.243 1.847z"/></g></symbol>
+    <symbol id="i-scissors" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M160.8 576.8c-20.266 20.268-32.8 48.266-32.8 79.192 0 61.856 50.144 112 112 112s112-50.144 112-112c0-30.926-12.534-58.924-32.8-79.192v0c-20.268-20.27-48.27-32.808-79.2-32.808s-58.932 12.538-79.2 32.808v0zM160.8 319.2c-20.266-20.268-32.8-48.266-32.8-79.192 0-61.856 50.144-112 112-112s112 50.144 112 112c0 30.926-12.534 58.924-32.8 79.192v0c-20.268 20.27-48.27 32.808-79.2 32.808s-58.932-12.538-79.2-32.808v0z"/><path d="M630.92 507.48c-3.507 5.060-5.603 11.329-5.603 18.088 0 10.936 5.486 20.59 13.855 26.362l0.107 0.070 270.64 185.2c4.785 3.005 10.603 4.787 16.836 4.787 17.673 0 32-14.327 32-32 0-10.449-5.008-19.728-12.755-25.568l-0.081-0.059-270.68-185.2c-5.025-3.505-11.26-5.6-17.985-5.6-0.019 0-0.039 0-0.058 0h0.003c-10.871 0.043-20.458 5.5-26.21 13.814l-0.070 0.106zM954.4 167.12c-5.845-8.451-15.484-13.917-26.401-13.917-6.755 0-13.022 2.093-18.186 5.666l0.106-0.070-365.92 250.4-170.040-116.32c6.337-15.634 10.014-33.768 10.014-52.761 0-79.529-64.471-144-144-144s-144 64.471-144 144c0 79.529 64.471 144 144 144 37.891 0 72.363-14.635 98.074-38.56l-0.088 0.081 149.36 102.36-149.56 102.36c-25.511-23.699-59.813-38.242-97.512-38.242-79.22 0-143.44 64.22-143.44 143.44s64.22 143.44 143.44 143.44c79.22 0 143.44-64.22 143.44-143.44 0-18.874-3.645-36.897-10.271-53.403l0.342 0.965 572-391.48c8.587-5.828 14.154-15.545 14.154-26.562 0-6.704-2.061-12.926-5.585-18.067l0.071 0.109zM320 240c0 0.005 0 0.011 0 0.017 0 44.183-35.817 80-80 80s-80-35.817-80-80c0-44.183 35.817-80 80-80 22.087 0 42.084 8.951 56.56 23.423v0c14.479 14.387 23.44 34.311 23.44 56.328 0 0.081 0 0.163 0 0.244v-0.013zM296.56 599.48c14.482 14.478 23.44 34.481 23.44 56.577 0 44.183-35.817 80-80 80s-80-35.817-80-80c0-22.096 8.958-42.099 23.44-56.577v0c14.409-14.618 34.427-23.675 56.56-23.675s42.151 9.056 56.551 23.665l0.009 0.009z"/></g></symbol>
+    <symbol id="i-wrench" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M896 576c-0.055-141.343-114.649-255.903-256-255.903-45.416 0-88.070 11.827-125.050 32.568l1.29-0.665-224.24-260c-17.403-17.403-41.444-28.167-68-28.167-53.111 0-96.167 43.055-96.167 96.167 0 26.556 10.764 50.597 28.167 68v0l260 224.24c-20.095 35.703-31.933 78.377-31.933 123.815 0 141.385 114.615 256 256 256 34.574 0 67.546-6.854 97.634-19.277l-1.701 0.622-160-173.4 22.64-105.36 105.36-22.64 173.4 160c11.767-28.301 18.6-61.174 18.6-95.643 0-0.126 0-0.251 0-0.377v0.020z"/><path d="M907.040 684c-4.878 11.826-16.316 19.998-29.664 19.998-8.382 0-16.012-3.223-21.717-8.498l0.021 0.019-161.2-148.76-68.92 14.8-14.8 68.92 148.76 161.2c5.255 5.684 8.478 13.314 8.478 21.696 0 13.347-8.172 24.786-19.785 29.586l-0.213 0.078c-31.956 13.295-69.076 21.017-108 21.017-159.058 0-288-128.942-288-288 0-0.020 0-0.040 0-0.060v0.003c0-0.112 0-0.244 0-0.376 0-41.729 8.833-81.394 24.731-117.229l-0.731 1.845-240.84-208.24c-0.6-0.48-1.16-1.040-1.72-1.56-23.166-23.166-37.495-55.17-37.495-90.52 0-70.701 57.314-128.015 128.015-128.015 35.35 0 67.354 14.329 90.52 37.495v0c0.52 0.52 1.080 1.12 1.56 1.68l208.2 240.92c34.079-15.348 73.875-24.289 115.76-24.289 159.058 0 288 128.942 288 288 0 0.102 0 0.203 0 0.305v-0.016c0 0.143 0 0.313 0 0.482 0 38.753-7.701 75.708-21.657 109.417l0.697-1.899zM640 352c-39.745 0.056-77.055 10.429-109.411 28.583l1.131-0.583c-4.462 2.511-9.795 3.99-15.474 3.99-9.652 0-18.305-4.273-24.173-11.031l-0.034-0.039-223.6-258.96c-11.453-10.897-26.984-17.601-44.081-17.601-35.346 0-64 28.654-64 64 0 17.097 6.704 32.628 17.627 44.108l-0.025-0.027 258.76 223.56c6.806 5.901 11.085 14.56 11.085 24.219 0 5.689-1.485 11.032-4.088 15.662l0.083-0.161c-17.6 31.252-27.968 68.608-27.968 108.386 0 123.712 100.288 224 224 224 13.214 0 26.161-1.144 38.748-3.339l-1.34 0.193-124.8-135.24c-5.251-5.683-8.472-13.31-8.472-21.689 0-2.377 0.259-4.694 0.751-6.923l-0.039 0.212 22.64-105.32c2.715-12.316 12.244-21.845 24.348-24.521l0.212-0.039 105.4-22.64c2.017-0.452 4.334-0.712 6.711-0.712 8.379 0 16.006 3.221 21.711 8.491l-0.022-0.020 135.24 124.8c1.968-11.16 3.094-24.008 3.094-37.12 0-123.765-100.267-224.111-224.001-224.24h-0.013z"/></g></symbol>
+    <symbol id="i-tooth" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M864 640.96c0.28-285.68-93.92-512.92-176-571.12-5.076-3.54-11.374-5.656-18.166-5.656-16.848 0-30.655 13.021-31.907 29.549l-0.007 0.108c-5.92 80.92-29.92 226.16-125.92 226.16s-120-145.24-126.040-226.12c-1.259-16.635-15.066-29.656-31.914-29.656-6.792 0-13.090 2.116-18.27 5.725l0.104-0.069c-81.96 58.12-176.16 285.4-175.88 571.080 0.409 105.596 86.106 191.040 191.759 191.040 0.085 0 0.17 0 0.254 0h319.987c0.072 0 0.157 0 0.241 0 105.653 0 191.35-85.444 191.759-191.001v-0.039z"/><path d="M684 674.32l-85.84-34.32 85.84-34.28c11.846-4.879 20.033-16.333 20.033-29.7 0-17.691-14.342-32.033-32.033-32.033-4.325 0-8.449 0.857-12.213 2.41l0.213-0.078-148 59.24-148-59.24c-3.551-1.476-7.675-2.333-12-2.333-17.691 0-32.033 14.342-32.033 32.033 0 13.367 8.187 24.821 19.82 29.622l0.213 0.078 85.84 34.28-85.84 34.32c-11.846 4.879-20.033 16.333-20.033 29.7 0 17.691 14.342 32.033 32.033 32.033 4.325 0 8.449-0.857 12.213-2.41l-0.213 0.078 148-59.24 148 59.24c3.551 1.476 7.675 2.333 12 2.333 17.691 0 32.033-14.342 32.033-32.033 0-13.367-8.187-24.821-19.82-29.622l-0.213-0.078zM896 641c0-170.88-32-301.6-58.8-381.12-34.88-103.2-82.48-181.96-130.56-216-10.164-7.386-22.891-11.815-36.653-11.815-9.871 0-19.209 2.279-27.518 6.339l0.371-0.164c-20.569 9.87-34.912 29.79-36.707 53.222l-0.013 0.218c-3.4 46-20.2 196.32-94.12 196.32s-90.72-150.36-94.12-196.44c-2.55-33.374-30.208-59.5-63.99-59.6h-0.010c-13.714 0.019-26.392 4.44-36.701 11.925l0.181-0.125c-48 34.12-95.68 112.88-130.56 216-26.8 79.64-58.8 210.36-58.8 381.24 0.568 123.281 100.638 223 223.998 223 0.001 0 0.002 0 0.002 0h320c0.001 0 0.001 0 0.002 0 123.36 0 223.43-99.719 223.998-222.946v-0.054zM832 641c-0.567 87.934-71.983 159-159.997 159-0.001 0-0.002 0-0.003 0h-320c-0.001 0-0.002 0-0.003 0-88.028 0-159.453-71.088-159.997-158.988v-0.052c0-162.2 30.040-285.6 55.4-360.56 44.2-130.64 92-173.48 106.44-184 12.44 164.92 68.52 255.6 158.16 255.6s145.8-90.84 157.96-255.76v0c14.4 10.36 62.28 53.040 106.64 184 25.36 75.12 55.4 198.52 55.4 360.72z"/></g></symbol>
+    <symbol id="i-lightning" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M384 0l64 320-256 96 448 480-64-320 256-96z"/><path d="M863.16 487.32c-2.544 10.512-10.020 18.858-19.78 22.567l-0.22 0.073-230.44 86.44 58.64 293.32c0.376 1.84 0.591 3.955 0.591 6.12 0 17.673-14.327 32-32 32-9.202 0-17.497-3.884-23.335-10.103l-0.016-0.017-448-480c-5.442-5.725-8.789-13.486-8.789-22.028 0-13.646 8.541-25.297 20.569-29.898l0.219-0.074 230.52-86.44-58.48-293c-0.376-1.84-0.591-3.955-0.591-6.12 0-17.673 14.327-32 32-32 9.202 0 17.497 3.884 23.335 10.103l0.016 0.017 448 480c5.32 5.699 8.587 13.375 8.587 21.813 0 2.563-0.301 5.056-0.87 7.444l0.044-0.218zM437.48 104l41.88 209.52c0.402 1.902 0.632 4.088 0.632 6.327 0 13.587-8.468 25.196-20.414 29.838l-0.218 0.075-211.36 79.4 338.48 362.64-41.84-209.52c-0.402-1.902-0.632-4.088-0.632-6.327 0-13.587 8.468-25.196 20.414-29.838l0.218-0.075 211.2-79.2z"/></g></symbol>
+    <symbol id="i-paw-print" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M928 528c0-44.183-35.817-80-80-80s-80 35.817-80 80c0 44.183 35.817 80 80 80v0c44.183 0 80-35.817 80-80v0zM256 528c0 44.183-35.817 80-80 80s-80-35.817-80-80c0-44.183 35.817-80 80-80v0c44.183 0 80 35.817 80 80v0zM368 640c44.183 0 80 35.817 80 80s-35.817 80-80 80c-44.183 0-80-35.817-80-80v0c0-44.183 35.817-80 80-80v0zM656 640c44.183 0 80 35.817 80 80s-35.817 80-80 80c-44.183 0-80-35.817-80-80v0c0-44.183 35.817-80 80-80v0zM732.96 336.6c-39.731 22.3-69.341 58.652-82.364 102.169l-0.316 1.231c-17.982 60.471-73.069 103.817-138.28 103.817s-120.298-43.347-138.019-102.798l-0.261-1.019c-13.304-44.822-42.921-81.246-81.808-103.149l-0.872-0.451c-40.639-21.992-67.778-64.301-67.778-112.948 0-70.692 57.308-128 128-128 18.327 0 35.755 3.852 51.518 10.79l-0.82-0.322c32.523 13.709 70.331 21.675 110 21.675s77.477-7.966 111.913-22.386l-1.913 0.71c14.942-6.616 32.37-10.468 50.698-10.468 70.692 0 128 57.308 128 128 0 48.648-27.139 90.957-67.102 112.613l-0.676 0.335z"/><path d="M848 640c-61.856 0-112-50.144-112-112s50.144-112 112-112c61.856 0 112 50.144 112 112v0c0 61.856-50.144 112-112 112v0zM848 480c-26.51 0-48 21.49-48 48s21.49 48 48 48c26.51 0 48-21.49 48-48v0c0-26.51-21.49-48-48-48v0zM288 528c0 61.856-50.144 112-112 112s-112-50.144-112-112c0-61.856 50.144-112 112-112v0c61.856 0 112 50.144 112 112v0zM176 480c-26.51 0-48 21.49-48 48s21.49 48 48 48c26.51 0 48-21.49 48-48v0c0-26.51-21.49-48-48-48v0zM368 608c61.856 0 112 50.144 112 112s-50.144 112-112 112c-61.856 0-112-50.144-112-112v0c0-61.856 50.144-112 112-112v0zM368 768c26.51 0 48-21.49 48-48s-21.49-48-48-48c-26.51 0-48 21.49-48 48v0c0 26.51 21.49 48 48 48v0zM656 608c61.856 0 112 50.144 112 112s-50.144 112-112 112c-61.856 0-112-50.144-112-112v0c0-61.856 50.144-112 112-112v0zM656 768c26.51 0 48-21.49 48-48s-21.49-48-48-48c-26.51 0-48 21.49-48 48v0c0 26.51 21.49 48 48 48v0zM748.48 364.56c-32.506 18.18-56.703 47.937-67.227 83.561l-0.253 0.999c-21.988 73.893-89.309 126.857-169 126.857s-147.011-52.964-168.681-125.611l-0.319-1.246c-10.68-36.499-34.702-66.185-66.297-84.035l-0.703-0.365c-50.318-27.626-83.856-80.256-83.856-140.72 0-88.315 71.552-159.918 159.848-160h0.008c0.135 0 0.294-0.001 0.454-0.001 22.259 0 43.442 4.605 62.649 12.915l-1.023-0.394c28.888 12.246 62.483 19.363 97.74 19.363s68.852-7.117 99.426-19.994l-1.686 0.63c18.798-8.39 40.735-13.276 63.813-13.276 88.366 0 160 71.634 160 160 0 60.877-33.999 113.814-84.045 140.857l-0.848 0.419zM672 128c-0.024 0-0.053 0-0.082 0-13.629 0-26.594 2.84-38.337 7.96l0.619-0.24c-36.167 15.355-78.231 24.28-122.38 24.28s-86.213-8.925-124.487-25.069l2.107 0.789c-11.191-4.946-24.242-7.826-37.965-7.826-53.019 0-96 42.981-96 96 0 36.602 20.484 68.419 50.613 84.614l0.512 0.251c47.133 26.389 82.216 69.558 97.473 121.231l0.367 1.449c13.976 47.049 56.829 80.777 107.56 80.777s93.584-33.729 107.357-79.985l0.203-0.793c15.674-53.217 50.859-96.45 97.083-122.307l1.037-0.533c30.364-16.527 50.626-48.197 50.626-84.6 0-53.019-42.981-96-96-96-0.108 0-0.215 0-0.323 0.001h0.017z"/></g></symbol>
+    <symbol id="i-barbell" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M384 704v-512c0-17.673-14.327-32-32-32v0h-96c-17.673 0-32 14.327-32 32v0 512c0 17.673 14.327 32 32 32v0h96c17.673 0 32-14.327 32-32v0zM768 736h-96c-17.673 0-32-14.327-32-32v0-512c0-17.673 14.327-32 32-32v0h96c17.673 0 32 14.327 32 32v0 512c0 17.673-14.327 32-32 32v0z"/><path d="M992 480h-32v128c0 35.346-28.654 64-64 64v0h-64v32c0 35.346-28.654 64-64 64v0h-96c-35.346 0-64-28.654-64-64v0-224h-192v224c0 35.346-28.654 64-64 64v0h-96c-35.346 0-64-28.654-64-64v0-32h-64c-35.346 0-64-28.654-64-64v0-128h-32c-17.673 0-32-14.327-32-32s14.327-32 32-32v0h32v-128c0-35.346 28.654-64 64-64v0h64v-32c0-35.346 28.654-64 64-64v0h96c35.346 0 64 28.654 64 64v0 224h192v-224c0-35.346 28.654-64 64-64v0h96c35.346 0 64 28.654 64 64v0 32h64c35.346 0 64 28.654 64 64v0 128h32c17.673 0 32 14.327 32 32s-14.327 32-32 32v0zM128 288v320h64v-320zM352 192h-96v512h96v-512zM768 192h-96v512h96v-447.32c0-0.24 0-0.44 0-0.68s0-0.48 0-0.68v-63.32zM896 288h-64v320h64z"/></g></symbol>
+    <symbol id="i-car" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M736 256h160v-96c0-17.673-14.327-32-32-32v0h-96c-17.673 0-32 14.327-32 32v0zM128 160c0-17.673 14.327-32 32-32v0h96c17.673 0 32 14.327 32 32v0 96h-160zM776.44 781c-5.109 11.288-16.274 19-29.24 19h-470.4c-12.966 0-24.131-7.712-29.158-18.799l-0.082-0.201-119.56-269h768z"/><path d="M960 544h-43.2l-111.12 250c-10.218 22.576-32.548 38-58.48 38h-470.4c-25.932 0-48.262-15.424-58.317-37.598l-0.163-0.402-111.12-250h-43.2c-17.673 0-32-14.327-32-32s14.327-32 32-32v0h32v-320c0-35.346 28.654-64 64-64v0h96c35.346 0 64 28.654 64 64v0 64h384v-64c0-35.346 28.654-64 64-64v0h96c35.346 0 64 28.654 64 64v0 320h32c17.673 0 32 14.327 32 32s-14.327 32-32 32v0zM276.8 768h470.4l99.56-224h-669.52zM256 160h-96v64h96zM768 160v64h96v-64zM864 288h-704v192h704zM224 384c0 17.673 14.327 32 32 32v0h64c17.673 0 32-14.327 32-32s-14.327-32-32-32v0h-64c-17.673 0-32 14.327-32 32v0zM672 384c0 17.673 14.327 32 32 32v0h64c17.673 0 32-14.327 32-32s-14.327-32-32-32v0h-64c-17.673 0-32 14.327-32 32v0z"/></g></symbol>
+    <symbol id="i-coffee" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M832 608v-192c0-0.021 0-0.047 0-0.072 0-141.163-83.095-262.918-203.040-319.020l-2.16-0.908h-293.6c-122.105 57.010-205.2 178.765-205.2 319.928 0 0.025 0 0.051 0 0.076v-0.004 192z"/><path d="M320 736v128c0 17.673 14.327 32 32 32s32-14.327 32-32v0-128c0-17.673-14.327-32-32-32s-32 14.327-32 32v0zM480 704c17.673 0 32 14.327 32 32v0 128c0 17.673-14.327 32-32 32s-32-14.327-32-32v0-128c0-17.673 14.327-32 32-32v0zM608 704c17.673 0 32 14.327 32 32v0 128c0 17.673-14.327 32-32 32s-32-14.327-32-32v0-128c0-17.673 14.327-32 32-32v0zM992 480v-32c-0.027-84.84-66.083-154.244-149.57-159.616l-0.47-0.024c-22.951-63.771-60.013-117.688-107.608-160.018l-0.392-0.342h98.040c17.673 0 32-14.327 32-32s-14.327-32-32-32v0h-704c-17.673 0-32 14.327-32 32s14.327 32 32 32v0h98.16c-79.83 70.771-129.953 173.511-130.16 287.963v192.037c0 17.673 14.327 32 32 32v0h704c88.366 0 160-71.634 160-160v0zM800 576h-640v-160c0.267-125.901 72.956-234.762 178.609-287.16l1.871-0.84h279.040c107.525 53.239 180.213 162.099 180.48 287.964v0.036zM928 480c-0.013 41.537-26.404 76.906-63.332 90.269l-0.668 0.211v-154.48c-0.026-21.204-1.771-41.98-5.102-62.222l0.302 2.222c40.081 12.116 68.769 48.704 68.8 91.996v0.004z"/></g></symbol>
+    <symbol id="i-house" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M864 480v-384h-256v256h-192v-256h-256v384c0 0.007 0 0.016 0 0.025 0 8.83 3.577 16.825 9.36 22.615v0l320 320c5.792 5.798 13.797 9.385 22.64 9.385s16.848-3.587 22.64-9.385v0l320-320c5.783-5.79 9.36-13.785 9.36-22.615 0-0.009 0-0.018 0-0.027v0.001z"/><path d="M877.24 525.28l-320 320c-11.58 11.573-27.574 18.73-45.24 18.73s-33.66-7.157-45.24-18.731l-320-320c-11.588-11.504-18.76-27.441-18.76-45.054 0-0.079 0-0.159 0-0.238v0.012-384c0-17.673 14.327-32 32-32v0h256c17.673 0 32 14.327 32 32v0 224h128v-224c0-17.673 14.327-32 32-32v0h256c17.673 0 32 14.327 32 32v0 384c0 0.067 0 0.147 0 0.226 0 17.613-7.173 33.55-18.757 45.050l-0.004 0.004zM832 128h-192v224c0 17.673-14.327 32-32 32v0h-192c-17.673 0-32-14.327-32-32v0-224h-192v352l320 320 320-320z"/></g></symbol>
+    <symbol id="i-scales" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M224 608l128-320c0-70.68-80-96-128-96s-128 25.32-128 96zM800 736l-128-320c0-70.68 80-96 128-96s128 25.32 128 96z"/><path d="M957.72 428l-128 320c-4.848 11.891-16.319 20.119-29.713 20.119-2.455 0-4.846-0.276-7.142-0.8l0.215 0.041-249.080-55.36v88c0 17.673-14.327 32-32 32s-32-14.327-32-32v0-102.32l-262.96-58.44c-10.413-2.357-18.761-9.545-22.682-19.028l-0.078-0.212v-0.24l-128-319.76c-1.443-3.494-2.281-7.55-2.281-11.802 0-0.069 0-0.139 0.001-0.208v0.011c0-93.24 98.16-128 160-128s160 34.76 160 128c0 0.059 0.001 0.128 0.001 0.198 0 4.252-0.838 8.309-2.357 12.014l0.077-0.211-114.040 284.92 212.32 47.080v-504h-64c-17.673 0-32-14.327-32-32s14.327-32 32-32v0h192c17.673 0 32 14.327 32 32s-14.327 32-32 32v0h-64v518.32l204 45.28-105.72-263.6c-1.443-3.494-2.281-7.55-2.281-11.802 0-0.069 0-0.139 0.001-0.208v0.011c0-93.24 98.16-128 160-128s160 34.76 160 128c0 0.059 0.001 0.128 0.001 0.198 0 4.252-0.838 8.309-2.357 12.014l0.077-0.211zM224 224c-30.12 0-91.040 14.44-95.72 58.56l95.72 239.28 95.72-239.28c-4.68-44.12-65.6-58.56-95.72-58.56zM800 352c-30.12 0-91.040 14.44-95.72 58.56l95.72 239.28 95.72-239.28c-4.68-44.12-65.6-58.56-95.72-58.56z"/></g></symbol>
+    <symbol id="i-storefront" viewBox="0 -960 1024 1024"><g transform="scale(1,-1)" fill="currentColor"><path opacity=".2" d="M896 576v-64c0-70.692-57.308-128-128-128s-128 57.308-128 128v0 64h-256v-64c0-70.692-57.308-128-128-128s-128 57.308-128 128v0 64l57.36 200.8c3.941 13.464 16.153 23.141 30.633 23.2h592.007c14.536-0.003 26.807-9.698 30.703-22.974l0.057-0.226z"/><path d="M926.76 584.76l-57.36 200.84c-7.975 26.913-32.409 46.24-61.381 46.4h-592.019c-28.991-0.16-53.425-19.487-61.284-45.945l-0.116-0.455-57.36-200.84c-0.784-2.623-1.237-5.638-1.24-8.758v-64.002c0-52.165 24.964-98.5 63.598-127.708l0.402-0.292v-288c0-17.673 14.327-32 32-32v0h640c17.673 0 32 14.327 32 32v0 288c39.036 29.5 64 75.835 64 128v0 64c-0.003 3.122-0.456 6.137-1.297 8.985l0.057-0.225zM216 768h592l45.68-160h-683.24zM608 544v-32c0-53.019-42.981-96-96-96s-96 42.981-96 96v0 32zM204.24 431.2c-26.76 17.324-44.221 47.021-44.24 80.797v32.003h192v-32c-0.019-53.005-42.992-95.966-96-95.966-16.261 0-31.577 4.043-44.999 11.178l0.519-0.252c-2.101 1.649-4.5 3.072-7.073 4.162l-0.207 0.078zM800 128h-576v227.2c9.618-2.030 20.672-3.195 31.996-3.2h0.004c52.165 0 98.5 24.964 127.708 63.598l0.292 0.402c29.5-39.036 75.835-64 128-64s98.5 24.964 127.708 63.598l0.292 0.402c29.5-39.036 75.835-64 128-64v0c11.328 0.005 22.382 1.17 33.052 3.382l-1.052-0.182zM864 512c-0.028-33.786-17.505-63.484-43.905-80.572l-0.375-0.228c-2.749-1.172-5.12-2.58-7.273-4.255l0.073 0.055c-12.913-6.897-28.243-10.947-44.52-10.947-53.001 0-95.97 42.951-96 95.944v32.003h192z"/></g></symbol>
   </svg>
 
   <script src="/script.js" defer></script>

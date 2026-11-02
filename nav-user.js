@@ -3,6 +3,13 @@
 import { supabase, getProfile, renderAvatar } from "/supabase.js";
 
 const { data: { session } } = await supabase.auth.getSession();
+
+// If Supabase sent someone here straight after Google sign-in (?code=...), the
+// code has just been swapped for a session above, so take them to their dashboard.
+if (session && new URLSearchParams(window.location.search).has("code")) {
+  window.location.replace("/dashboard.html");
+}
+
 const login = document.querySelector(".nav-login");
 
 if (session && login) {

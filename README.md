@@ -10,9 +10,10 @@ Landing page for **Spotlight** — shows local businesses whether AI assistants 
 | `styles.css` | All styles — the "Spotlight Glass" design (frosted glass over soft light orbs) |
 | `script.js` | Mobile menu, form submission, scroll animations |
 | `thanks.html` | Fallback page after the sign-up form is submitted |
-| `login.html` / `login.js` | Log in with Google, Apple (iCloud) or Yahoo |
+| `login.html` / `login.js` | Log in with Google |
 | `dashboard.html` / `dashboard.js` | Signed-in page: add and list tracked businesses |
-| `supabase.js` | Supabase connection (project URL + publishable key) |
+| `supabase.js` | Supabase connection (project URL + publishable key) and profile helpers |
+| `nav-user.js` | Shows the signed-in user's name and picture in the landing page nav |
 | `supabase/migrations/` | Database schema (already applied to the Supabase project) |
 | `favicon.svg` | Site icon |
 | `netlify.toml` | Netlify config (no build step, publishes the repo root) |
@@ -39,7 +40,7 @@ Database tables (row level security on, so each user only sees their own rows):
 
 ### One-time setup in the Supabase dashboard
 
-All three providers use this **callback URL**:
+Google uses this **callback URL**:
 
 ```
 https://mmzkgsgwclgtqrpeectd.supabase.co/auth/v1/callback
@@ -54,20 +55,9 @@ https://mmzkgsgwclgtqrpeectd.supabase.co/auth/v1/callback
 - Authorized JavaScript origins: your Netlify URL. Authorized redirect URI: the callback URL above.
 - Paste the Client ID and Client Secret into Supabase and enable Google.
 
-**3. Apple (iCloud)** — Authentication → Providers → Apple
-- Requires a paid [Apple Developer](https://developer.apple.com/account) account.
-- Create an App ID with "Sign in with Apple", then a **Services ID** (this is the Client ID) with your domain and the callback URL above as the return URL.
-- Create a Sign in with Apple **key** (.p8 file) and use it to generate the client secret — follow [Supabase's Apple login guide](https://supabase.com/docs/guides/auth/social-login/auth-apple), which includes a secret generator. Apple secrets expire every 6 months — set a reminder to regenerate it.
+Until Google is enabled, clicking the button lands on a Supabase "provider is not enabled" error page.
 
-**4. Yahoo** — Authentication → Providers → **New Provider** (custom)
-- Create an app at [developer.yahoo.com/apps](https://developer.yahoo.com/apps/) with **OpenID Connect** permissions (Email, Profile) and the callback URL above as the redirect URI.
-- In Supabase choose **Auto-discovery (OIDC)**:
-  - Identifier: `custom:yahoo` (must match exactly — the login button uses it)
-  - Issuer URL: `https://api.login.yahoo.com`
-  - Client ID / Client Secret from Yahoo
-  - Scopes: `openid email profile`
-
-Until a provider is enabled, clicking its button lands on a Supabase "provider is not enabled" error page.
+Once signed in, the user's name and profile picture (from Google, via `user_metadata`) show in the dashboard header and in the landing page nav (`nav-user.js`).
 
 ## Run locally
 

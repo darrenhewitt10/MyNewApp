@@ -1,4 +1,4 @@
-import { supabase } from "/supabase.js";
+import { supabase, getProfile, renderAvatar } from "/supabase.js";
 
 const main = document.querySelector(".dash");
 const form = document.getElementById("business-form");
@@ -26,16 +26,10 @@ supabase.auth.onAuthStateChange((event) => {
 document.getElementById("sign-out").addEventListener("click", () => supabase.auth.signOut());
 
 function showUser(user) {
-  const meta = user.user_metadata ?? {};
-  const name = meta.full_name || meta.name || user.email || "there";
-  document.querySelector(".user-name").textContent = user.email ?? name;
-  document.querySelector(".first-name").textContent = name.split(" ")[0];
-  const avatarUrl = meta.avatar_url || meta.picture;
-  if (avatarUrl) {
-    const avatar = document.querySelector(".avatar");
-    avatar.src = avatarUrl;
-    avatar.hidden = false;
-  }
+  const profile = getProfile(user);
+  document.querySelector(".user-name").textContent = profile.name;
+  document.querySelector(".first-name").textContent = profile.firstName;
+  renderAvatar(document.querySelector(".avatar"), profile);
 }
 
 async function loadBusinesses() {

@@ -48,7 +48,7 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { opacity: 0.8; }
 h1, h2, h3 { margin: 0; font-weight: 700; }
-h1 { font-size: clamp(44px, 6vw, 72px); line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance; }
+h1 { font-weight: 400; font-size: clamp(44px, 6vw, 72px); line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance; }
 h2 { font-size: clamp(34px, 4.4vw, 52px); line-height: 1.06; letter-spacing: -0.03em; text-wrap: balance; }
 h3 { font-size: 21px; font-weight: 600; letter-spacing: -0.015em; }
 p { margin: 0; }
@@ -421,7 +421,10 @@ h2.wrap-natural { text-wrap: wrap; }
 /* ---------- Dashboard ---------- */
 .user-menu { display: flex; align-items: center; gap: 12px; margin-left: auto; min-width: 0; font-size: 14px; color: var(--muted); }
 .user-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.avatar { flex: none; width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.avatar-initials { display: grid; place-items: center; background: var(--glass2); border: 1px solid var(--stroke); color: var(--text); font-size: 13px; font-weight: 600; }
+.nav-user { display: flex; align-items: center; gap: 10px; min-width: 0; max-width: 220px; }
+.nav-user .user-name { color: var(--text); }
 .user-menu .btn { border-radius: 999px; box-shadow: none; }
 .dash { padding: 72px 0 120px; }
 .dash-head { display: flex; flex-direction: column; gap: 16px; }

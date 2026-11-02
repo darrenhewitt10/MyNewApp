@@ -1,6 +1,6 @@
 // On the landing page: if someone is signed in, swap "Log in" for their name and
 // profile picture, linking to their dashboard.
-import { supabase, getProfile, renderAvatar } from "/supabase.js";
+import { supabase, getProfile, renderAvatar } from "/supabase.js?v=2";
 
 const { data: { session } } = await supabase.auth.getSession();
 

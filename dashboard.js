@@ -1,4 +1,4 @@
-import { supabase, getProfile, renderAvatar } from "/supabase.js";
+import { supabase, getProfile, renderAvatar } from "/supabase.js?v=2";
 
 const main = document.querySelector(".dash");
 const form = document.getElementById("business-form");

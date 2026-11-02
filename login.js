@@ -1,4 +1,4 @@
-import { supabase } from "/supabase.js?v=2";
+import { supabase } from "/supabase.js?v=3";
 
 const errorBox = document.querySelector(".auth-error");
 const buttons = document.querySelectorAll(".provider-btn");

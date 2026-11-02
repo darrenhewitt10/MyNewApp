@@ -1,4 +1,4 @@
-import { supabase, getProfile, renderAvatar } from "/supabase.js?v=2";
+import { supabase, getProfile, renderAvatar } from "/supabase.js?v=3";
 
 const main = document.querySelector(".dash");
 const form = document.getElementById("business-form");
@@ -7,6 +7,8 @@ const list = document.querySelector(".biz-list");
 const empty = document.querySelector(".biz-empty");
 
 // The OAuth redirect lands here with a ?code=...; supabase-js exchanges it for a session.
+const params = new URLSearchParams(window.location.search);
+const justSignedIn = params.has("code") || params.has("welcome");
 const { data: { session } } = await supabase.auth.getSession();
 if (!session) {
   // Pass along any sign-in error (e.g. the user cancelled) so the login page can show it.
@@ -15,6 +17,7 @@ if (!session) {
   // Remove the one-time code from the address bar.
   if (window.location.search) history.replaceState(null, "", "/dashboard.html");
   showUser(session.user);
+  if (justSignedIn) playLightsOn(getProfile(session.user).firstName);
   main.hidden = false;
   loadBusinesses();
 }
@@ -30,6 +33,23 @@ function showUser(user) {
   document.querySelector(".user-name").textContent = profile.name;
   document.querySelector(".first-name").textContent = profile.firstName;
   renderAvatar(document.querySelector(".avatar"), profile);
+}
+
+// Welcome animation: a spotlight switches on and brightens the page, then fades away.
+function playLightsOn(firstName) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const overlay = document.querySelector(".lights-on");
+  overlay.querySelector(".lo-name").textContent = firstName;
+  overlay.hidden = false;
+  document.body.classList.add("is-lighting-up");
+
+  const finish = () => {
+    overlay.remove();
+    document.body.classList.remove("is-lighting-up");
+  };
+  overlay.addEventListener("animationend", (e) => { if (e.target === overlay) finish(); });
+  overlay.addEventListener("click", finish); // tap to skip
+  setTimeout(finish, 4000); // safety net
 }
 
 async function loadBusinesses() {

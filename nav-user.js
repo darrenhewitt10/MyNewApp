@@ -1,13 +1,13 @@
 // On the landing page: if someone is signed in, swap "Log in" for their name and
 // profile picture, linking to their dashboard.
-import { supabase, getProfile, renderAvatar } from "/supabase.js?v=2";
+import { supabase, getProfile, renderAvatar } from "/supabase.js?v=3";
 
 const { data: { session } } = await supabase.auth.getSession();
 
 // If Supabase sent someone here straight after Google sign-in (?code=...), the
 // code has just been swapped for a session above, so take them to their dashboard.
 if (session && new URLSearchParams(window.location.search).has("code")) {
-  window.location.replace("/dashboard.html");
+  window.location.replace("/dashboard.html?welcome");
 }
 
 const login = document.querySelector(".nav-login");

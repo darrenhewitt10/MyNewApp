@@ -1,0 +1,22 @@
+# Supabase CLI settings for the Edge Functions (`supabase functions deploy`).
+project_id = "mmzkgsgwclgtqrpeectd"
+
+# These functions check who is calling themselves:
+#   run-checks      - the scheduler's x-cron-secret header, or the user's sign-in token
+#   free-check      - public form, rate-limited
+#   stripe-webhook  - Stripe's signature
+# so the gateway's own JWT check is switched off for them.
+[functions.run-checks]
+verify_jwt = false
+
+[functions.free-check]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.generate-questions]
+verify_jwt = true
+
+[functions.billing]
+verify_jwt = true

@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex" />
   <meta name="theme-color" content="#07070d" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/styles.css?v=3" />
+  <link rel="stylesheet" href="/styles.css?v=4" />
 </head>
 <body>
   <div class="orbs" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -26,7 +26,6 @@
         <span class="user-name"></span>
         <button class="btn btn-ghost btn-sm" id="sign-out" type="button">Sign out</button>
       </div>
-      <a href="/#check" class="btn btn-primary btn-sm nav-cta">Free AI check</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span>
       </button>
@@ -47,36 +46,211 @@
       <div class="dash-head">
         <span class="eyebrow">Dashboard</span>
         <h1 class="dash-title">Hi <span class="first-name"></span> 👋</h1>
-        <p class="lede">Add the business you want Spotlight to track. We’ll start asking AI assistants about it every week.</p>
+        <div class="plan-bar">
+          <span class="plan-pill"></span>
+          <span class="plan-note muted"></span>
+          <button class="btn btn-primary btn-sm" id="upgrade-btn" type="button" hidden>Upgrade</button>
+          <button class="btn btn-ghost btn-sm" id="manage-billing" type="button" hidden>Manage billing</button>
+        </div>
       </div>
 
-      <div class="dash-grid">
-        <section class="dash-card glass">
-          <h2>Add a business</h2>
-          <form id="business-form" class="dash-form">
-            <div class="field">
-              <label for="b-name">Business name</label>
-              <input id="b-name" name="name" type="text" placeholder="e.g. Rosa’s Taqueria" required maxlength="200" />
-            </div>
-            <div class="field">
-              <label for="b-city">City</label>
-              <input id="b-city" name="city" type="text" placeholder="e.g. Austin, TX" required maxlength="200" />
-            </div>
-            <button class="btn btn-primary" type="submit">Start tracking</button>
-            <p class="form-msg" role="status" hidden></p>
-          </form>
-        </section>
+      <p class="banner" role="status" hidden></p>
 
-        <section class="dash-card glass">
-          <h2>Your businesses</h2>
-          <ul class="biz-list"></ul>
-          <p class="biz-empty">No businesses yet — add your first one.</p>
+      <div class="dash-layout">
+        <aside class="dash-side">
+          <section class="dash-card glass">
+            <h2>Your businesses</h2>
+            <ul class="biz-list"></ul>
+            <p class="biz-empty">No businesses yet. Add your first one below.</p>
+          </section>
+
+          <section class="dash-card glass" id="add-card">
+            <h2>Add a business</h2>
+            <form id="business-form" class="dash-form">
+              <div class="field">
+                <label for="b-name">Business name</label>
+                <input id="b-name" name="name" type="text" placeholder="e.g. Rosa’s Taqueria" required maxlength="200" />
+              </div>
+              <div class="field">
+                <label for="b-city">City</label>
+                <input id="b-city" name="city" type="text" placeholder="e.g. Austin, TX" required maxlength="200" />
+              </div>
+              <div class="field">
+                <label for="b-category">Type of business</label>
+                <input id="b-category" name="category" type="text" placeholder="e.g. taco restaurant, dentist, plumber" required maxlength="100" />
+              </div>
+              <div class="field">
+                <label for="b-website">Website <span class="faint">(optional)</span></label>
+                <input id="b-website" name="website" type="text" inputmode="url" placeholder="e.g. rosastaqueria.com" maxlength="500" />
+              </div>
+              <div class="field">
+                <label for="b-google">Google Business Profile link <span class="faint">(optional)</span></label>
+                <input id="b-google" name="google_profile_url" type="text" inputmode="url" placeholder="Paste the link from Google Maps" maxlength="500" />
+              </div>
+              <button class="btn btn-primary" type="submit">Start tracking</button>
+              <p class="form-msg" role="status" hidden></p>
+            </form>
+          </section>
+
+          <section class="dash-card glass">
+            <h2>Settings</h2>
+            <label class="toggle">
+              <input type="checkbox" id="email-reports" />
+              <span>Email me the report after every check</span>
+            </label>
+          </section>
+        </aside>
+
+        <section class="dash-main" aria-live="polite">
+          <div class="dash-card glass detail-empty">
+            <h2>Your AI visibility report will appear here</h2>
+            <p class="muted">Add your business and we’ll ask ChatGPT, Claude and Gemini the questions your customers ask, then show you where you stand.</p>
+          </div>
+
+          <div class="detail" hidden>
+            <div class="dash-card glass detail-head">
+              <div class="detail-title">
+                <h2 class="d-name"></h2>
+                <span class="d-meta muted"></span>
+              </div>
+              <div class="detail-actions">
+                <button class="btn btn-primary btn-sm" id="run-now" type="button">Run check now</button>
+                <button class="btn btn-ghost btn-sm" id="delete-biz" type="button">Remove</button>
+              </div>
+              <p class="run-status" role="status" hidden></p>
+            </div>
+
+            <div class="stat-row">
+              <div class="dash-card glass stat">
+                <div class="score-ring big" style="--pct: 0%"><span class="s-score">–</span></div>
+                <div>
+                  <span class="kicker">AI visibility score</span>
+                  <p class="stat-sub s-score-sub muted">No checks yet</p>
+                </div>
+              </div>
+              <div class="dash-card glass stat">
+                <div>
+                  <span class="kicker">Mentioned in</span>
+                  <p class="stat-value s-mention">–</p>
+                  <p class="stat-sub muted">of AI answers</p>
+                </div>
+              </div>
+              <div class="dash-card glass stat">
+                <div>
+                  <span class="kicker">Since last check</span>
+                  <p class="stat-value s-change">–</p>
+                  <p class="stat-sub s-change-sub muted">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+
+            <section class="dash-card glass">
+              <h2>Score over time</h2>
+              <div class="chart" id="score-chart"></div>
+            </section>
+
+            <section class="dash-card glass">
+              <h2>What AI assistants said</h2>
+              <p class="section-sub muted">Your position in each answer. Tap a result to read the full answer.</p>
+              <div class="table-wrap"><table class="report-table results-table"></table></div>
+              <p class="results-empty muted" hidden>Results appear here after your first check.</p>
+            </section>
+
+            <section class="dash-card glass">
+              <h2>Recommended instead of you</h2>
+              <div class="chips competitor-chips"></div>
+              <p class="competitors-note muted" hidden></p>
+            </section>
+
+            <section class="dash-card glass">
+              <h2>Your fix list</h2>
+              <p class="section-sub muted">Plain-English steps, most impact first. Tick them off as you go.</p>
+              <ol class="fix-list"></ol>
+              <p class="fixes-note muted" hidden></p>
+            </section>
+
+            <section class="dash-card glass">
+              <div class="section-row">
+                <h2>Customer questions</h2>
+                <span class="q-count muted"></span>
+              </div>
+              <p class="section-sub muted">The questions we ask each assistant. Edit them to match what your customers really ask.</p>
+              <ul class="q-list"></ul>
+              <form class="q-form" id="question-form">
+                <label for="q-text" class="sr-only">New question</label>
+                <input id="q-text" name="text" type="text" placeholder="e.g. best late night tacos in Austin" maxlength="300" required />
+                <button class="btn btn-ghost btn-sm" type="submit">Add</button>
+              </form>
+              <div class="q-actions">
+                <button class="btn btn-ghost btn-sm" id="suggest-questions" type="button">✨ Suggest questions</button>
+              </div>
+              <p class="form-msg q-msg" role="status" hidden></p>
+            </section>
+          </div>
         </section>
       </div>
+
+      <section class="dash-plans" id="plans" hidden>
+        <div class="section-head">
+          <span class="eyebrow">Upgrade</span>
+          <h2 class="wrap-natural">Keep watching, every week.</h2>
+        </div>
+        <div class="pricing">
+          <article class="plan glass">
+            <div><h3>Starter</h3><span class="plan-desc">See where you stand.</span></div>
+            <p class="price">$49<span>/mo</span></p>
+            <ul>
+              <li>1 location</li>
+              <li>10 customer questions</li>
+              <li>ChatGPT, Claude &amp; Gemini</li>
+              <li>Weekly email report</li>
+              <li>Top 3 fixes each week</li>
+            </ul>
+            <button class="btn btn-ghost btn-block" type="button" data-plan="starter">Choose Starter</button>
+          </article>
+          <article class="plan plan-featured">
+            <span class="plan-badge">Most popular</span>
+            <div><h3>Growth</h3><span class="plan-desc">Get recommended, and stay there.</span></div>
+            <p class="price">$99<span>/mo</span></p>
+            <ul>
+              <li>1 location</li>
+              <li>30 customer questions</li>
+              <li>All major AI assistants</li>
+              <li>Competitor tracking</li>
+              <li>Full prioritized fix list</li>
+            </ul>
+            <button class="btn btn-primary btn-block" type="button" data-plan="growth">Choose Growth</button>
+          </article>
+          <article class="plan glass">
+            <div><h3>Multi-location</h3><span class="plan-desc">For franchises &amp; agencies.</span></div>
+            <p class="price">Custom</p>
+            <ul>
+              <li>Unlimited locations</li>
+              <li>Custom question sets</li>
+              <li>Location-by-location reports</li>
+              <li>Priority support</li>
+            </ul>
+            <a href="mailto:hello@spotlight.example" class="btn btn-ghost btn-block">Talk to us</a>
+          </article>
+        </div>
+      </section>
     </div>
   </main>
 
-  <script src="/nav.js?v=3" defer></script>
-  <script type="module" src="/dashboard.js?v=3"></script>
+  <dialog class="answer-dialog" aria-labelledby="answer-title">
+    <div class="answer-inner glass-strong">
+      <div class="answer-top">
+        <div>
+          <span class="kicker answer-assistant"></span>
+          <h3 id="answer-title" class="answer-question"></h3>
+        </div>
+        <button class="biz-remove" type="button" data-close aria-label="Close">×</button>
+      </div>
+      <div class="answer-text"></div>
+    </div>
+  </dialog>
+
+  <script src="/nav.js?v=4" defer></script>
+  <script type="module" src="/dashboard.js?v=4"></script>
 </body>
 </html>

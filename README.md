@@ -83,7 +83,7 @@ How a check works:
 2. `generate-questions` writes 10–30 realistic customer questions with Claude (or templates if no Anthropic key is set). Users can edit, pause, add and remove them.
 3. `run-checks` asks each question to ChatGPT, Claude, Gemini and Perplexity (whichever the plan includes **and** have an API key set), uses Claude to read each answer (was the business mentioned? at what position? who else was recommended?), and saves everything.
 4. It scores the check 0–100, writes a prioritized fix list (Claude reads the business's website and the results), and emails the report through Resend.
-5. The scheduler calls `run-checks` every 10 minutes; each call checks the most overdue business and processes one free-check lead. Paid plans are checked every 7 days. The free plan gets one report.
+5. The scheduler (pg_cron, authenticated by a secret kept in Vault) calls `run-checks` every 10 minutes; each call checks the most overdue business and processes one free-check lead. Paid plans are checked every 7 days. The free plan gets one report.
 
 | Function | Called by | What it does |
 | --- | --- | --- |
@@ -104,7 +104,6 @@ Plans (also enforced by the database): **Free** — 1 location, 10 questions, on
 | Secret | Needed for |
 | --- | --- |
 | `SITE_URL` | Links in emails and Stripe redirects, e.g. `https://your-site.netlify.app` |
-| `CRON_SECRET` | A long random value (`openssl rand -hex 32`); the scheduler sends it |
 | `ANTHROPIC_API_KEY` | Claude as an assistant, and for questions, answer reading and fix lists |
 | `OPENAI_API_KEY` | ChatGPT |
 | `GEMINI_API_KEY` | Gemini |
@@ -125,7 +124,7 @@ supabase functions deploy --project-ref mmzkgsgwclgtqrpeectd
 
 `supabase/config.toml` already turns off the gateway's JWT check for `run-checks`, `free-check` and `stripe-webhook`, which authenticate callers themselves.
 
-**4. Schedule the checks.** Open `supabase/setup/schedule-checks.sql`, put your `CRON_SECRET` in place of `CHANGE-ME`, and run it in the SQL editor.
+**4. Schedule the checks.** Run `supabase/setup/schedule-checks.sql` in the SQL editor. It generates the scheduler's secret inside Vault, so there's nothing to copy.
 
 **5. Stripe.** Create two monthly prices (Starter $49, Growth $99) and copy their IDs into the secrets. Add a webhook endpoint at `https://mmzkgsgwclgtqrpeectd.supabase.co/functions/v1/stripe-webhook` for `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated` and `customer.subscription.deleted`, and copy its signing secret into `STRIPE_WEBHOOK_SECRET`. Turn on the customer portal (Settings → Billing → Customer portal).
 

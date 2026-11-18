@@ -35,13 +35,6 @@ returns int language sql immutable set search_path = '' as $$
   select case p when 'growth' then 30 when 'multi' then 100 else 10 end
 $$;
 
-create function public.current_plan()
-returns text language sql stable security definer set search_path = '' as $$
-  select coalesce((select plan from public.profiles where id = (select auth.uid())), 'free')
-$$;
-revoke execute on function public.current_plan() from public, anon;
-grant execute on function public.current_plan() to authenticated;
-
 -- ---------------------------------------------------------------------------
 -- Businesses: more detail, and when the next check is due
 -- ---------------------------------------------------------------------------
@@ -278,7 +271,19 @@ revoke execute on function public.claim_pending_lead() from public, anon, authen
 grant execute on function public.claim_due_business() to service_role;
 grant execute on function public.claim_pending_lead() to service_role;
 
+-- The scheduler proves itself with a random secret kept in Vault (created by
+-- supabase/setup/schedule-checks.sql). run-checks asks the database to compare.
+create function public.verify_cron_secret(candidate text)
+returns boolean
+language sql stable security definer set search_path = '' as $$
+  select coalesce(length(candidate) >= 32, false) and exists (
+    select 1 from vault.decrypted_secrets where name = 'cron_secret' and decrypted_secret = candidate
+  )
+$$;
+revoke execute on function public.verify_cron_secret(text) from public, anon, authenticated;
+grant execute on function public.verify_cron_secret(text) to service_role;
+
 -- The scheduler is pg_cron + pg_net calling the run-checks function.
--- The schedule itself needs a secret, so it lives in supabase/setup/schedule-checks.sql.
+-- The schedule itself lives in supabase/setup/schedule-checks.sql.
 create extension if not exists pg_cron;
-create extension if not exists pg_net;
+create extension if not exists pg_net with schema extensions;

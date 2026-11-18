@@ -16,8 +16,8 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "Use POST" }, 405);
 
   const admin = adminClient();
-  const cronSecret = Deno.env.get("CRON_SECRET");
-  const isCron = Boolean(cronSecret) && req.headers.get("x-cron-secret") === cronSecret;
+  const cronHeader = req.headers.get("x-cron-secret");
+  const isCron = cronHeader ? (await admin.rpc("verify_cron_secret", { candidate: cronHeader })).data === true : false;
 
   if (isCron) {
     // A run that has been "running" for 20+ minutes died with its worker.

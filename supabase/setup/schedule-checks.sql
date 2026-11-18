@@ -1,12 +1,13 @@
--- Run once in the Supabase SQL editor, after deploying the Edge Functions.
--- It makes the database call the run-checks function every 10 minutes. Each call
--- checks the most overdue business and processes one free-check lead.
+-- Run once in the Supabase SQL editor, after the tracking_engine migration and
+-- deploying the Edge Functions. The database then calls the run-checks function
+-- every 10 minutes; each call checks the most overdue business and processes
+-- one free-check lead.
 --
--- Before running: replace CHANGE-ME with the same random value you saved as the
--- CRON_SECRET Edge Function secret (e.g. the output of `openssl rand -hex 32`).
+-- The scheduler's secret is generated here and stays inside Vault: run-checks
+-- verifies it with public.verify_cron_secret(), so nobody needs to copy it.
 
 select vault.create_secret('https://mmzkgsgwclgtqrpeectd.supabase.co', 'project_url');
-select vault.create_secret('CHANGE-ME', 'cron_secret');
+select vault.create_secret(encode(extensions.gen_random_bytes(32), 'hex'), 'cron_secret');
 
 select cron.schedule(
   'spotlight-run-checks',

@@ -5,6 +5,7 @@
 // Checks take minutes, so the work continues after the response is sent.
 import { availableAssistants } from "../_shared/assistants.ts";
 import { runBusinessCheck, runLeadCheck, type BusinessRow, type LeadRow } from "../_shared/checks.ts";
+import { emailConfigured } from "../_shared/email.ts";
 import { adminClient, getUser, json, preflight, runInBackground } from "../_shared/http.ts";
 import { limitsFor, MANUAL_RUN_COOLDOWN_HOURS, PLANS } from "../_shared/plans.ts";
 
@@ -49,11 +50,14 @@ Deno.serve(async (req) => {
       }
     }
 
-    const { data: pending } = await admin.rpc("claim_pending_lead");
-    const lead = (pending as LeadRow[] | null)?.[0];
-    if (lead) {
-      claimed.lead = lead.id;
-      jobs.push(runLeadCheck(admin, lead));
+    // Free checks are delivered by email, so they wait in line until email is set up.
+    if (emailConfigured()) {
+      const { data: pending } = await admin.rpc("claim_pending_lead");
+      const lead = (pending as LeadRow[] | null)?.[0];
+      if (lead) {
+        claimed.lead = lead.id;
+        jobs.push(runLeadCheck(admin, lead));
+      }
     }
 
     runInBackground(Promise.all(jobs));
